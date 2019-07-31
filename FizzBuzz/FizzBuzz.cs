@@ -6,9 +6,9 @@ namespace FizzBuzz
     {
         /// <param name="number">input number</param>
         /// <returns>
-        /// fizz - for number divided by 3
-        /// buzz - for number divided by 5
-        /// fizzbuzz - for number divided by 3 and 5
+        /// fizz - for number divisible by 3
+        /// buzz - for number divisible by 5
+        /// fizzbuzz - for number divisible by 3 and 5
         /// </returns>
         public string Check(int number)
         {
