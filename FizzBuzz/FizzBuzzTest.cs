@@ -6,44 +6,17 @@ namespace FizzBuzz
     {
         private FizzBuzz _sut = new FizzBuzz();
 
-        [Fact]
-        public void tc1()
+        [Theory]
+        [InlineData(3, "FIZZ")]
+        [InlineData(5, "BUZZ")]
+        [InlineData(15, "FIZZBUZZ")]
+        [InlineData(4, "4")]
+        public void Check_Return_CorrectValue(int number, string expectedResult)
         {
-            int number = 3;
             string returnValue = _sut.Check(number);
             Assert.NotNull(returnValue);
             Assert.NotEmpty(returnValue);
-            Assert.Equal("FIZZ", returnValue.ToUpper());
-        }
-
-        [Fact]
-        public void tc2()
-        {
-            int number = 5;
-            string returnValue = _sut.Check(number);
-            Assert.NotNull(returnValue);
-            Assert.NotEmpty(returnValue);
-            Assert.Equal("BUZZ", returnValue.ToUpper());
-        }
-
-                [Fact]
-        public void tc3()
-        {
-            int number = 15;
-            string returnValue = _sut.Check(number);
-            Assert.NotNull(returnValue);
-            Assert.NotEmpty(returnValue);
-            Assert.Equal("FIZZBUZZ", returnValue.ToUpper());
-        }
-
-                        [Fact]
-        public void tc4()
-        {
-            int number = 4;
-            string returnValue = _sut.Check(number);
-            Assert.NotNull(returnValue);
-            Assert.NotEmpty(returnValue);
-            Assert.Equal("4", returnValue.ToUpper());
+            Assert.Equal(expectedResult, returnValue.ToUpper());
         }
     }
 }
