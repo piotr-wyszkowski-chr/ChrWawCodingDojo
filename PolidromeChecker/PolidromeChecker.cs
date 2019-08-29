@@ -12,7 +12,7 @@ Example:
 "ABBA" is a palindrome
 "ABAB" is not a palindrome
          */
-        public bool Check(bool input)
+        public bool Check(string input)
         {
             
         }
