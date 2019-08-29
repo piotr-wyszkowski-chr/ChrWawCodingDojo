@@ -30,9 +30,10 @@ namespace RomanNumbers
             Assert.Equal(expected, result);
         }
 
+        [Theory]
+        [InlineData("VX")]
         public void Exchange_IncorrectRomanNumber_ThrowException(string input)
         {
-            var result = _sut.Exchange(input);
             Assert.Throws<ArgumentException>(() => _sut.Exchange(input));
         }
 
