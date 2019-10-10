@@ -8,37 +8,31 @@ namespace CodingDojoIoc
 {
     class CodingDojoContainer :ICodingDojoContainer
     {
-        private readonly List<Type> _types;
-        private readonly Dictionary<Type, object> _dictionaryObject;
-        private readonly Dictionary<Type, Type> _classesInterfacesDictionary;
+        private readonly Dictionary<Type, object> _dictionarySingletons;
+        private readonly Dictionary<Type, Type> _dictionaryTypes;
 
-        public CodingDojoContainer(List<Type> types, Dictionary<Type, object> dictionaryObject, Dictionary<Type, Type> classesInterfacesDictionary)
+        public CodingDojoContainer(Dictionary<Type, object> dictionarySingletons, Dictionary<Type, Type> dictionaryTypes)
         {
-            _types = types;
-            _dictionaryObject = dictionaryObject;
-            _classesInterfacesDictionary = classesInterfacesDictionary;
+            _dictionarySingletons = dictionarySingletons;
+            _dictionaryTypes = dictionaryTypes;
         }
 
         public T Resolve<T>()
         {
-            throw new NotImplementedException();
+            return (T)Resolve(typeof(T));
         }
 
         public object Resolve(Type type)
         {
-            if (_dictionaryObject.TryGetValue(type, out object foundDictObj))
+            if (_dictionarySingletons.TryGetValue(type, out object foundDictObj))
             {
                 return foundDictObj;
             }
             else
             {
-                var foundType = _types.SingleOrDefault(x => x == type);
-                if (foundType == null)
+                if (!_dictionaryTypes.TryGetValue(type, out var foundType))
                 {
-                    if (!_classesInterfacesDictionary.TryGetValue(type, out foundType))
-                    {
-                        return null;
-                    }
+                    return null;
                 }
 
                 var obj = Activator.CreateInstance(foundType);
