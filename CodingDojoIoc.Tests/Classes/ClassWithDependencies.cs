@@ -9,11 +9,6 @@ namespace CodingDojoIoc.Tests.Classes
         private readonly Class2 _class2;
         private readonly Class3 _class3;
 
-        public ClassWithDependencies()
-        {
-                
-        }
-
         public ClassWithDependencies(Class2 class2, Class3 class3)
         {
             _class2 = class2;

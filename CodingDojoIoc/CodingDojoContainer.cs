@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using CodingDojoIoc.Interfaces;
 
 namespace CodingDojoIoc
 {
-    class CodingDojoContainer :ICodingDojoContainer
+    class CodingDojoContainer : ICodingDojoContainer
     {
         private readonly Dictionary<Type, object> _dictionarySingletons;
         private readonly Dictionary<Type, Type> _dictionaryTypes;
@@ -32,11 +33,25 @@ namespace CodingDojoIoc
             {
                 if (!_dictionaryTypes.TryGetValue(type, out var foundType))
                 {
-                    return null;
+                    throw new KeyNotFoundException(message: $"Type {type.Name} not specified in container");
                 }
 
-                var obj = Activator.CreateInstance(foundType);
-                return obj;
+                var constructorInfo = foundType.GetConstructors()
+                    .OrderByDescending(x => x.GetParameters().Length).
+                    FirstOrDefault(x => !x.GetParameters().Any() || x.GetParameters().
+                            All(z => _dictionaryTypes.ContainsKey(z.ParameterType)));
+
+                if (constructorInfo == null)
+                {
+                    throw new Exception("Could not resolve object");
+                }
+                var parameters = constructorInfo.GetParameters().Select(info => Resolve(info.ParameterType)).ToArray();
+                if (parameters.Length == 0)
+                {
+                    return Activator.CreateInstance(foundType);
+                }
+
+                return constructorInfo.Invoke(parameters);
             }
         }
     }

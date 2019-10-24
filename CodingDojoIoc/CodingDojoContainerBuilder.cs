@@ -24,26 +24,30 @@ namespace CodingDojoIoc
 
         public CodingDojoContainerBuilder RegisterType(Type type)
         {
+            if (type.IsInterface)
+            {
+                throw new InvalidOperationException("Could not register interface type");
+            }
             RemoveIfRegistered(type);
             _classesInterfacesDictionary.Add(type, type);
             return this;
         }
-        public CodingDojoContainerBuilder Register<TInterface, T>()
-            where T : class, TInterface
-            where TInterface:class
+        public CodingDojoContainerBuilder Register<TBase, T>()
+            where T : class, TBase
+            where TBase:class
         {
-            RemoveIfRegistered(typeof(TInterface));
-            _classesInterfacesDictionary.Add(typeof(TInterface), typeof(T));
+            RemoveIfRegistered(typeof(TBase));
+            _classesInterfacesDictionary.Add(typeof(TBase), typeof(T));
             return this;
         }
         public CodingDojoContainerBuilder Register<T>()
             where T : class
         {
-            Register<T, T>();
+            RegisterType(typeof(T));
             return this;
         }
 
-        public CodingDojoContainerBuilder Register<T>(T obj)
+        public CodingDojoContainerBuilder RegisterSingleton<T>(T obj)
         {
             RemoveIfRegistered(typeof(T));
             _dictionaryObject.Add(typeof(T),obj);
