@@ -21,7 +21,7 @@ namespace BowlingPointing
         [TestMethod]
         public void CalculatePoints_CorrectAmountOfFrames_ReturnsValue()
         {
-            var frames = _fixture.CreateMany<Frame>(BowlingPointingSystem.AmountOfFrames).ToArray();
+            var frames = new int[] { };
             var result = _sut.CalculatePoints(frames);
             result.Should().BeGreaterThan(0);
         }
