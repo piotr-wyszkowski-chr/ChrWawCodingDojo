@@ -1,47 +1,65 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BowlingPointing
 {
+    public class BowlingGame
+    {
+        private BowlingPointingSystem _bowlingPointingSystem = new BowlingPointingSystem();
+
+        public int AddRound(int first, int second, int third = default)
+        {
+            Round round = new Round
+            {
+                First = first,
+                Second = second,
+                Third = third
+            };
+            _bowlingPointingSystem.AddRound(round);
+            return _bowlingPointingSystem.TotalPoints;
+        }
+    }
+
     public class BowlingPointingSystem
     {
+        private List<Round> _rounds = new List<Round>(10);
+        private Round _lastRound = null;
         public static int AmountOfFrames => 10;
 
-        public int CalculatePoints(Round frame)
+        public int TotalPoints
         {
-            frame.TotalResult = frame.First + frame.Second + frame.Third;
+            get { return _rounds.Sum(round => round.TotalResult); }
+        }
 
-            if (frame.PreviousRound?.PreviousRound?.ResultRoundType == ResultRoundType.Strike &&
-                frame.PreviousRound.ResultRoundType == ResultRoundType.Strike)
+        public void AddRound(Round round)
+        {
+            round.PreviousRound = _lastRound;
+            _rounds.Add(round);
+            _lastRound = round;
+            CalculatePoints(round);
+        }
+
+        private void CalculatePoints(Round round)
+        {
+            round.TotalResult = round.First + round.Second + round.Third;
+
+            if (round.PreviousRound?.PreviousRound?.ResultRoundType == ResultRoundType.Strike &&
+                round.PreviousRound.ResultRoundType == ResultRoundType.Strike)
             {
-                frame.PreviousRound.PreviousRound.TotalResult += frame.First;
+                round.PreviousRound.PreviousRound.TotalResult += round.First;
             }
 
-            if (frame.PreviousRound?.ResultRoundType == ResultRoundType.Strike)
+            if (round.PreviousRound?.ResultRoundType == ResultRoundType.Strike)
             {
-                frame.PreviousRound.TotalResult += frame.First + frame.Second;
+                round.PreviousRound.TotalResult += round.First + round.Second;
             }
 
-            if (frame.PreviousRound?.ResultRoundType == ResultRoundType.Spare)
+            if (round.PreviousRound?.ResultRoundType == ResultRoundType.Spare)
             {
-                frame.PreviousRound.TotalResult += frame.First;
+                round.PreviousRound.TotalResult += round.First;
             }
-            //if (frame.PreviousRound != null)
-            //{
-            //    Round previous = frame.PreviousRound;
-            //    if (previous.ResultRoundType == ResultRoundType.Strike)
-            //    {
-            //        previous.TotalResult += frame.First+frame.Second;
-            //        Round prevPreviousRound = previous.PreviousRound;
-            //        if (prevPreviousRound != null)
-            //        {
-            //            if (prevPreviousRound.ResultRoundType == ResultRoundType.Strike)
-            //            {
-            //                prevPreviousRound.TotalResult += frame.First + frame.Second;
-            //            }
-            //        }
-            //    }
-
-            //}
+            
         }
     }
 
