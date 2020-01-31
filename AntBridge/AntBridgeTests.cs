@@ -20,6 +20,10 @@ namespace AntBridge
             _sut.Bridge("GFEDCBA", "-----------------------").Should().Be("GFEDCBA");
         }
 
-
+        [TestMethod]
+        public void Example2()
+        {
+            _sut.Bridge("GFEDCBA", "----..-----....---------").Should().Be("CBAGFED");
+        }
     }
 }
