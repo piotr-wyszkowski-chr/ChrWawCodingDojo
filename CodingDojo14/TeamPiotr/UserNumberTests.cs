@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TeamPiotr
 {
@@ -7,18 +8,30 @@ namespace TeamPiotr
     {
         private readonly UserNumber _sut = new UserNumber();
 
-        [DataRow(1, 1)]
-        [DataRow(5, 4)]
-        [DataRow(10, 8)]
-        [DataRow(12, 10)]
-        [DataRow(25, 20)]
-        [DataRow(875, 500)]
-        [DataRow(1860, 1000)]
-        [DataRow(303250, 100000)]
+        [DataRow(1,1)]
+        [DataRow(4,5)]
+        [DataRow(8,10)]
+        [DataRow(10,12)]
+        [DataRow(20,25)]
+        [DataRow(500,875)]
+        [DataRow(1000,1860)]
+        [DataRow(100000,303250)]
         [TestMethod]
-        public void FirstTest(int result, int usersCount)
+        public void GetNumber(int userNumber, int expectedResult)
         {
-            Assert.AreEqual(result, _sut.GetNumber(usersCount));
+            _sut.GetNumber(userNumber).Should().Be(expectedResult);
+        }
+
+        [DataRow(1, false)]
+        [DataRow(4, true)]
+        [DataRow(8, false)]
+        [DataRow(10, false)]
+        [DataRow(20, false)]
+        [DataRow(500, false)]
+        [TestMethod]
+        public void CheckIfNumberContains4Or9(int input, bool expected)
+        {
+            _sut.CheckIfNumberContains4Or9(input).Should().Be(expected);
         }
     }
 }
