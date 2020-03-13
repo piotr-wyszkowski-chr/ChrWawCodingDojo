@@ -56,5 +56,34 @@ namespace CarParkEscape
             Assert.AreEqual(result, _sut.Escape(carpark));
         }
 
+        [TestMethod]
+        public void SolveFloorTest()
+        {
+            int[] floor = new int[] { 0, 0, 0, 0, 2 };
+            var floorReturn = _sut.SolveFloor(floor);
+            FloorReturn result = new FloorReturn() { Direction = Direction.Right , StartPosition = 4, StepCount = 0 };
+            Assert.AreEqual(result, _sut.SolveFloor(floor));
+
+        }
+
+        [TestMethod]
+        public void SolveFloorTest2()
+        {
+            int[] floor = new int[] { 0, 1, 0, 0, 2 };
+            var floorReturn = _sut.SolveFloor(floor);
+            FloorReturn result = new FloorReturn() { Direction = Direction.Left, StartPosition = 1, StepCount = 3 };
+            Assert.AreEqual(result, _sut.SolveFloor(floor));
+
+        }
+
+        [TestMethod]
+        public void SolveFloorTest3()
+        {
+            int[] floor = new int[] { 0, 2, 0, 0, 0 };
+            var floorReturn = _sut.SolveFloor(floor);
+            FloorReturn result = new FloorReturn() { Direction = Direction.Right, StartPosition = 4, StepCount = 3 };
+            Assert.AreEqual(result, _sut.SolveFloor(floor));
+
+        }
     }
 }
