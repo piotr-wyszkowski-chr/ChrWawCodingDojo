@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Coding Dojo 16", "Coding Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Letterbox Paint-Squad", "Coding Dojo 16\Letterbox Paint-Squad\Letterbox Paint-Squad.csproj", "{B2E9073D-8A69-47D9-89CE-9CFEFBA91A60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boggle Word Checker", "Coding Dojo 16\Boggle Word Checker\Boggle Word Checker.csproj", "{DF5793F3-1FBC-4AFB-B532-E3977943069F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,18 @@ Global
 		{B2E9073D-8A69-47D9-89CE-9CFEFBA91A60}.Release|x64.Build.0 = Release|Any CPU
 		{B2E9073D-8A69-47D9-89CE-9CFEFBA91A60}.Release|x86.ActiveCfg = Release|Any CPU
 		{B2E9073D-8A69-47D9-89CE-9CFEFBA91A60}.Release|x86.Build.0 = Release|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Debug|x64.Build.0 = Debug|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Debug|x86.Build.0 = Debug|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Release|x64.ActiveCfg = Release|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Release|x64.Build.0 = Release|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Release|x86.ActiveCfg = Release|Any CPU
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +52,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B2E9073D-8A69-47D9-89CE-9CFEFBA91A60} = {A007B23D-5C0B-42D3-B142-41C9C50002A3}
+		{DF5793F3-1FBC-4AFB-B532-E3977943069F} = {A007B23D-5C0B-42D3-B142-41C9C50002A3}
 	EndGlobalSection
 EndGlobal
