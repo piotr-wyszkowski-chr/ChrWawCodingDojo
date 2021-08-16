@@ -4,6 +4,7 @@ using Xunit;
 namespace Next_bigger_number
 {
     public class KataTests
+
     {        
         [Theory]
         [InlineData(-1, -1)]
@@ -20,6 +21,7 @@ namespace Next_bigger_number
         public void Test1(long n, long result)
         {
             Kata.NextBigger(n).Should().Be(result);
+
         }
     }
 }

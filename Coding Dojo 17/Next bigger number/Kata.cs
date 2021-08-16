@@ -7,6 +7,7 @@ namespace Next_bigger_number
     {
         public static long NextBigger(long n)
         {
+
             if (n < 0)
             {
                 return -1;
@@ -47,6 +48,7 @@ namespace Next_bigger_number
             Array.Sort(right);
 
             return long.Parse(string.Concat(left.Concat(right)));
+
         }
     }
 }
